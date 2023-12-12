@@ -1,0 +1,125 @@
+Microsoft Windows [Version 10.0.22631.2792]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\abdul>mysql -u root -p
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| abdulla            |
+| basha              |
+| hospitalmanagement |
+| information_schema |
+| library            |
+| mysql              |
+| performance_schema |
+| school             |
+| sys                |
+| trainbase          |
++--------------------+
+10 rows in set (0.04 sec)
+
+mysql>  use trainbase
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_trainbase |
++---------------------+
+| active__passangers  |
+| passangers          |
+| trains              |
++---------------------+
+3 rows in set (0.01 sec)
+
+mysql> desc trains;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| trainid    | int         | NO   | PRI | NULL    |       |
+| trainame   | varchar(30) | YES  |     | NULL    |       |
+| startpoint | varchar(30) | YES  |     | NULL    |       |
+| endpoint   | varchar(30) | YES  |     | NULL    |       |
+| time       | varchar(15) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> select * from trains;
++---------+----------------------+------------+-----------+---------+
+| trainid | trainame             | startpoint | endpoint  | time    |
++---------+----------------------+------------+-----------+---------+
+|    7445 | cct lpi spl          | vijayawada | hyderabad | 6 hours |
+|   12739 | garib rath           | vijayawada | hyderabad | 6 hours |
+|   12759 | charminar sf express | vijayawada | hyderabad | 5 hours |
+|   17015 | vishaka express      | vijayawada | hyderabad | 7 hours |
++---------+----------------------+------------+-----------+---------+
+4 rows in set (0.02 sec)
+
+mysql> desc passangers;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| passid   | int         | NO   | PRI | NULL    |       |
+| passname | varchar(30) | YES  |     | NULL    |       |
+| passage  | varchar(30) | YES  |     | NULL    |       |
+| gender   | varchar(10) | YES  |     | NULL    |       |
+| phoneno  | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from passangers;
++--------+----------+----------+--------+-----------+
+| passid | passname | passage  | gender | phoneno   |
++--------+----------+----------+--------+-----------+
+|      1 | hari     | 47 years | male   | 999999999 |
+|      2 | ravi     | 36 years | male   | 888888888 |
+|      3 | satya    | 39 years | female | 777777777 |
+|      4 | supriya  | 45 years | female | 666666666 |
+|      5 | shamili  | 54 years | female | 555555555 |
++--------+----------+----------+--------+-----------+
+5 rows in set (0.02 sec)
+
+mysql> desc active__passangers;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| passid   | int         | NO   | PRI | NULL    |       |
+| passname | varchar(30) | YES  |     | NULL    |       |
+| passage  | varchar(30) | YES  |     | NULL    |       |
+| gender   | varchar(10) | YES  |     | NULL    |       |
+| phoneno  | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from active__passangers;
++--------+----------+----------+--------+-----------+
+| passid | passname | passage  | gender | phoneno   |
++--------+----------+----------+--------+-----------+
+|      2 | ravi     | 36 years | male   | 888888888 |
+|      4 | supriya  | 45 years | female | 666666666 |
+|      5 | shamili  | 54 years | female | 555555555 |
++--------+----------+----------+--------+-----------+
+3 rows in set (0.02 sec)
+
+mysql>  select passname from active__passangers
+    -> where passid="4";
++----------+
+| passname |
++----------+
+| supriya  |
++----------+
+1 row in set (0.01 sec)
+
+mysql>
